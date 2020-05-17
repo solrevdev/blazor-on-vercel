@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWarn>NU1603;0612;TS1128;RCS1102;RCS1163</NoWarn>
+  </PropertyGroup>
+</Project>

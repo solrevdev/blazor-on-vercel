@@ -1,0 +1,11 @@
+
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+wwwroot/lib/*
+*.min.js
+*.min.css
+*.htm[l]
+
+
