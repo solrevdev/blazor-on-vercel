@@ -10,11 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
 namespace backend
 {
     public class Startup
     {
+        private readonly string _myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +28,18 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _myAllowSpecificOrigins,
+                                builder =>
+                                {
+                                    builder.WithOrigins("https://blazor.now.sh",
+                                                        "https://blazor.solrevdev.now.sh",
+                                                        "https://localhost:5001",
+                                                        "http://localhost:5000");
+                                });
+            });
+
             services.AddControllers();
         }
 
@@ -39,6 +54,15 @@ namespace backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(policy =>
+                        policy
+                            .WithOrigins("https://blazor.now.sh",
+                                         "https://blazor.solrevdev.now.sh",
+                                         "https://localhost:5001",
+                                         "http://localhost:5000")
+                            .AllowAnyMethod()
+                            .WithHeaders(HeaderNames.ContentType));
 
             app.UseAuthorization();
 
