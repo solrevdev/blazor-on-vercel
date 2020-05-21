@@ -9,3 +9,4 @@ cd backend
 dotnet build -c Release
 dotnet publish -c Release
 flyctl deploy
+cd ..
