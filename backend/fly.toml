@@ -4,8 +4,8 @@
 #
 
 app = "blue-dust-2805"
-# https://fly.io/docs/reference/regions/ the other option was fra for frankfurt but lhr is closer to me
-primary_region = "lhr"
+# https://fly.io/docs/reference/regions/ the other option was lhr but only paid plans do scaling and on deployment lhr did nothing. lets try again with fra
+primary_region = "fra"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
