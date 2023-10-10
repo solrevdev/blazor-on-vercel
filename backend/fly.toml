@@ -4,7 +4,8 @@
 #
 
 app = "blue-dust-2805"
-primary_region = "fra"
+# https://fly.io/docs/reference/regions/ the other option was fra for frankfurt but lhr is closer to me
+primary_region = "lhr"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
@@ -17,9 +18,9 @@ kill_timeout = "5s"
 [[services]]
   protocol = "tcp"
   internal_port = 5000
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 1
+  auto_stop_machines = true  # Automatically stop machines when idle
+  auto_start_machines = true  # Automatically start machines based on demand
+  min_machines_running = 0  # Keep zero machines running when idle
   processes = ["app"]
 
   [[services.ports]]
@@ -29,10 +30,11 @@ kill_timeout = "5s"
   [[services.ports]]
     port = 443
     handlers = ["tls", "http"]
+
   [services.concurrency]
     type = "connections"
-    hard_limit = 25
-    soft_limit = 20
+    hard_limit = 1  # Set to 1 to minimize resource usage
+    soft_limit = 1  # Set to 1 to minimize resource usage
 
   [[services.tcp_checks]]
     interval = "10s"
