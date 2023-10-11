@@ -13,7 +13,7 @@ kill_timeout = "5s"
   auto_rollback = true
 
 [processes]
-  app = "shared-cpu-1x"  # the smallest cheapest one.
+  app = "shared-cpu-1x"  # the smallest cheapest one. use fly scale memory 256 to keep low and fly scale show to check
 
 [[services]]
   protocol = "tcp"
