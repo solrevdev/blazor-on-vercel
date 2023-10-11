@@ -13,7 +13,7 @@ kill_timeout = "5s"
   auto_rollback = true
 
 [processes]
-  app = ""
+  app = "shared-cpu-1x"  # the smallest cheapest one.
 
 [[services]]
   protocol = "tcp"
